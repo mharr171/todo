@@ -58,4 +58,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # To Work With Heroku
-gem 'pg', group: [:production, :staging]
+gem 'pg', '~> 0.18', group: [:production, :staging]
