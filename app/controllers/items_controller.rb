@@ -19,8 +19,13 @@ class ItemsController < ApplicationController
   end
 
   def complete
-    @item.update_attribute(:completed_at, Time.now)
-    redirect_to @todo_list, notice: 'Item completed.'
+    if @item.completed_at.blank?
+      @item.update_attribute(:completed_at, Time.now)
+      redirect_to @todo_list, notice: 'Item completed.'
+    else
+      @item.update_attribute(:completed_at, nil)
+      redirect_to @todo_list, notice: 'Item marked to-be-completed.'
+    end
   end
 
   private

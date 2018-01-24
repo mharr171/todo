@@ -1,25 +1,34 @@
 <div class="row clearfix">
+
   <% if item.completed? %>
 
+    <div class="complete">
+      <%= link_to complete_todo_list_item_path(@todo_list, item.id), method: :patch do %>
+        <i style="opacity: 0.4;" class="fa fa-check"></i>
+      <% end %>
+    </div>
     <div class="item">
       <p style="opacity: 0.3;"><strike><%= item.content %></strike></p>
     </div>
-    <div class="complete">
-      <%= link_to "Mark as Complete", complete_todo_list_item_path(@todo_list, item.id), method: :patch %>
-    </div>
-    <div class="trash">
-      <%= link_to "Delete", todo_list_item_path(@todo_list, item.id), method: :delete, data: {confirm: "Are you sure?"} %>
-    </div>
+
   <% else %>
 
+    <div class="complete">
+      <%= link_to complete_todo_list_item_path(@todo_list, item.id), method: :patch do %>
+        <i class="fa fa-check"></i>
+      <% end %>
+    </div>
     <div class="item">
       <p><%= item.content %></p>
     </div>
-    <div class="complete">
-      <%= link_to "Mark as Complete", complete_todo_list_item_path(@todo_list, item.id), method: :patch %>
-    </div>
-    <div class="trash">
-      <%= link_to "Delete", todo_list_item_path(@todo_list, item.id), method: :delete, data: {confirm: "Are you sure?"} %>
-    </div>
+
   <% end %>
+
+  <div class="trash">
+    <%= link_to todo_list_item_path(@todo_list, item.id), method: :delete do %>
+    <!-- < %= link_to todo_list_item_path(@todo_list, item.id), method: :delete, data: {confirm: "Are you sure?"} do % > -->
+      <i class="fa fa-trash"></i>
+    <% end %>
+  </div>
+
 </div>
